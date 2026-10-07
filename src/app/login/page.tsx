@@ -88,7 +88,7 @@ function LoginForm() {
         </form>
         <p className="mt-6 text-center text-xs text-muted">
           Forgotten your password? Reset it on{" "}
-          <a href="https://kiddiescheck.org/forgot-password" className="text-brand hover:underline">kiddiescheck.org</a>.
+          <a href="https://www.kiddiescheck.org/forgot-password" className="text-brand hover:underline">kiddiescheck.org</a>.
         </p>
       </div>
     </main>

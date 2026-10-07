@@ -21,7 +21,8 @@ The service worker only registers in production builds (`npm run build && npm st
 ## Deploy (Vercel)
 
 1. Import the repository into Vercel. The framework preset is Next.js; no build settings need changing.
-2. Set the environment variable `KIDDIES_CHECK_URL` (for example `https://kiddiescheck.org`). Next.js bakes the proxy target in at build time, so redeploy after changing it.
+2. Set the environment variable `KIDDIES_CHECK_URL` to `https://www.kiddiescheck.org`. Next.js bakes the proxy target in at build time, so redeploy after changing it.
+   Use the exact host Kiddies Check serves from. `https://kiddiescheck.org` (without `www`) redirects to `www`. The proxy passes that redirect to the browser, which then calls Kiddies Check directly; the cross-origin request is blocked and sign-in fails.
 3. Deploy the matching Kiddies Check version first. Spotlight needs its `/api/spotlight/*` endpoints.
 
 ## How it works

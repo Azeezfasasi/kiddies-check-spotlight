@@ -64,7 +64,12 @@ export async function apiRequest<T>(path: string, init: RequestInit & { auth?: b
     response = await fetch(`${BASE}${path}`, { ...rest, headers, signal: rest.signal ?? AbortSignal.timeout(30_000) });
   } catch (error) {
     const timedOut = error instanceof DOMException && error.name === "TimeoutError";
-    throw new ApiError(timedOut ? "Kiddies Check took too long to respond" : "You appear to be offline", 0);
+    // fetch also fails when online, e.g. the proxy target redirects to another domain (CORS)
+    const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    throw new ApiError(
+      timedOut ? "Kiddies Check took too long to respond" : offline ? "You appear to be offline" : "Couldn't reach Kiddies Check. Please try again.",
+      offline ? 0 : 503
+    );
   }
 
   const body = await response.json().catch(() => null);

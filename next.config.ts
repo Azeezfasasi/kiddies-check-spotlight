@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 // Spotlight has no backend of its own. Requests to /api/kc/* are proxied to the
 // Kiddies Check API, so the browser stays same-origin (no CORS) and the
 // service worker can cache API responses.
-const KIDDIES_CHECK_URL = (process.env.KIDDIES_CHECK_URL || "https://kiddiescheck.org").replace(/\/$/, "");
+const KIDDIES_CHECK_URL = (process.env.KIDDIES_CHECK_URL || "https://www.kiddiescheck.org").replace(/\/$/, "");
 
 const nextConfig: NextConfig = {
   async rewrites() {
