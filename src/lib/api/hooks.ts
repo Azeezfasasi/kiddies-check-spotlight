@@ -2,7 +2,7 @@
 
 import useSWR, { preload, type Cache, type SWRConfiguration } from "swr";
 import { getData } from "./client";
-import type { Level, MeResponse, PeriodType, SpotlightView } from "./types";
+import type { Level, MeResponse, PeriodType, SearchResponse, SpotlightView } from "./types";
 
 export interface ViewParams {
   level: Level;
@@ -62,7 +62,7 @@ export function persistentCache(): Cache {
     try {
       // Only settled data is worth keeping; newest entries last
       const keep = [...map.entries()]
-        .filter(([, state]) => (state as { data?: unknown })?.data !== undefined)
+        .filter(([key, state]) => !key.startsWith("/spotlight/search") && (state as { data?: unknown })?.data !== undefined)
         .slice(-MAX_ENTRIES)
         .map(([key, state]) => [key, { data: (state as { data: unknown }).data }]);
       localStorage.setItem(CACHE_KEY, JSON.stringify(keep));
@@ -83,3 +83,13 @@ export const clearPersistedCache = () => {
     // ignore
   }
 };
+
+/** Search across schools, leaders, teachers, arms and pupils in the user's scope. */
+export function useSearch(query: string) {
+  const q = query.trim();
+  return useSWR<SearchResponse>(q.length >= 2 ? `/spotlight/search?q=${encodeURIComponent(q)}` : null, fetcher, {
+    keepPreviousData: true,
+    dedupingInterval: 60_000,
+    revalidateOnFocus: false,
+  });
+}

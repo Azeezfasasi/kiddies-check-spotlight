@@ -104,3 +104,18 @@ export interface SpotlightView {
   rows: { kind: "school" | "arm" | "pupil"; items: ViewRow[] };
   team: ViewRow[];
 }
+
+export type SearchResultType = "school" | "leader" | "teacher" | "arm" | "pupil";
+
+export interface SearchResult {
+  type: SearchResultType;
+  id: string;
+  name: string;
+  subtitle: string | null;
+  href: { level: "school" | "arm"; id: string };
+}
+
+export interface SearchResponse {
+  query: string;
+  results: SearchResult[];
+}

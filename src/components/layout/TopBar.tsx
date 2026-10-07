@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import type { Breadcrumb, Period, PeriodType } from "@/lib/api/types";
+import type { Breadcrumb, Period, PeriodType, SearchResult } from "@/lib/api/types";
+import { SearchBox } from "./SearchBox";
 import { ChevronLeft, ChevronRight, InfoIcon, LogoutIcon, MenuIcon } from "@/components/ui/icons";
 
 interface Props {
   breadcrumbs: Breadcrumb[] | undefined;
   crumbHref(crumb: Breadcrumb): string;
+  searchHref(result: SearchResult): string;
   period: Period | undefined;
   periodType: PeriodType;
   onPeriodType(type: PeriodType): void;
@@ -50,6 +52,8 @@ export function TopBar(props: Props) {
           }) ?? <li className="h-5 w-48 animate-pulse rounded bg-line" />}
         </ol>
       </nav>
+
+      <SearchBox hrefFor={props.searchHref} />
 
       <div className="flex flex-wrap items-center gap-3">
         <div role="group" aria-label="Period" className="flex overflow-hidden rounded-md border border-line bg-surface">

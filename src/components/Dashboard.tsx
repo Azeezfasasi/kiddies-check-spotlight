@@ -92,6 +92,7 @@ export function Dashboard({ level, id }: { level: Level; id: string | null }) {
       <TopBar
         breadcrumbs={current?.breadcrumbs}
         crumbHref={crumbHref}
+        searchHref={(r) => hrefFor(r.href.level, r.href.id, state)}
         period={current?.period}
         periodType={state.period}
         onPeriodType={selectPeriod}
