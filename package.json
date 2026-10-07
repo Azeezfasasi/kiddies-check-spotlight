@@ -1,0 +1,29 @@
+{
+  "name": "kiddies-check-spotlight",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Analytics and performance dashboard for Kiddies Check",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "15.5.27",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "swr": "^2.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.27",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5"
+  }
+}
