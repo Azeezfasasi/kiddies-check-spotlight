@@ -20,6 +20,12 @@ import { OfflineIcon } from "./ui/icons";
 
 const ROW_TITLES = { school: "Schools", arm: "Arms", pupil: "Pupils" } as const;
 
+/** Today as YYYY-MM-DD in the viewer's timezone, the same format as period dates. */
+const todayKey = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+};
+
 export function Dashboard({ level, id }: { level: Level; id: string | null }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -56,8 +62,16 @@ export function Dashboard({ level, id }: { level: Level; id: string | null }) {
     setKpiDrawer(false);
     update({ kpi }, "replace");
   };
-  // Switching Day/Week/Term keeps the date the user is looking at
-  const selectPeriod = (period: PeriodType) => update({ period, date: current?.period.date ?? state.date });
+  // Switching Day/Week/Term opens today when the period on screen includes today.
+  // When the user has stepped back to an earlier period, it opens that period's
+  // last working day instead (a week or term is keyed by its first day, which
+  // would otherwise jump Day view back to a Monday or the start of term).
+  const selectPeriod = (period: PeriodType) => {
+    const shown = current?.period;
+    const today = todayKey();
+    const date = !shown || (shown.start <= today && today <= shown.end) ? null : shown.days.at(-1) ?? shown.end;
+    update({ period, date });
+  };
   const selectDate = (date: string) => update({ date });
   const drillToDate = (date: string, period: "day" | "week") => update({ date, period });
   const selectTab = (tab: Tab) => {
