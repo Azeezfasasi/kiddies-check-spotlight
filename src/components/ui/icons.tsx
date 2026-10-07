@@ -49,4 +49,6 @@ export const MapPinIcon = make(<><path d="M12 21s-7-6.2-7-12a7 7 0 0114 0c0 5.8-
 export const LogoutIcon = make(<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h11" />, "LogoutIcon");
 export const RefreshIcon = make(<path d="M20 11a8 8 0 10-2.3 5.7M20 4v7h-7" />, "RefreshIcon");
 export const OfflineIcon = make(<path d="M2 8.8a15 15 0 0120 0M5.5 12.4a10 10 0 0113 0M9 16a5 5 0 016 0M12 20h.01M3 3l18 18" />, "OfflineIcon");
+export const EyeIcon = make(<><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></>, "EyeIcon");
+export const EyeOffIcon = make(<><path d="M10.6 5.1A10.7 10.7 0 0112 5c6.4 0 10 7 10 7a17.6 17.6 0 01-3.2 4.1M6.6 6.6A17.4 17.4 0 002 12s3.6 7 10 7a9.7 9.7 0 005.4-1.6M9.9 9.9a3 3 0 004.2 4.2M3 3l18 18" /></>, "EyeOffIcon");
 export const CopyIcon = make(<><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3" /></>, "CopyIcon");

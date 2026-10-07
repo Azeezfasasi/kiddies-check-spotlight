@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState, type FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/auth";
 import { SpotlightMark } from "@/components/brand/SpotlightMark";
+import { EyeIcon, EyeOffIcon } from "@/components/ui/icons";
 
 /** Only same-site paths are allowed as a post-login destination. */
 const safeNext = (next: string | null) => (next && next.startsWith("/") && !next.startsWith("//") ? next : "/");
@@ -16,6 +17,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   // Until React has hydrated, a click would do a plain form submit and just reload the page
   const [ready, setReady] = useState(false);
   const next = safeNext(params.get("next"));
@@ -67,17 +69,30 @@ function LoginForm() {
               className="h-11 rounded-lg border border-line px-3 font-normal outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
             />
           </label>
-          <label className="flex flex-col gap-1.5 text-sm font-medium">
-            Password
-            <input
-              type="password"
-              required
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="h-11 rounded-lg border border-line px-3 font-normal outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
-            />
-          </label>
+          <div className="flex flex-col gap-1.5 text-sm font-medium">
+            <label htmlFor="password">Password</label>
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                required
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="h-11 w-full rounded-lg border border-line pr-11 pl-3 font-normal outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((s) => !s)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
+                title={showPassword ? "Hide password" : "Show password"}
+                className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-lg text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-brand"
+              >
+                {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
+              </button>
+            </div>
+          </div>
           <button
             type="submit"
             disabled={submitting || !ready}
