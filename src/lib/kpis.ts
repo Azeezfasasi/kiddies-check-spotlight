@@ -25,7 +25,7 @@ export const KPIS: KpiDefinition[] = [
     label: "Assessment Records",
     columns: [{ key: "assessments", label: "Assessments" }],
     targets: { exceeds: 90, meeting: 75, approaching: 50 },
-    description: "Teachers who recorded at least one assessment in the period. For an arm, pupils with at least one assessment.",
+    description: "Staff who recorded at least one assessment in the period, out of teaching staff (anyone who recorded counts as teaching staff). For an arm, pupils with at least one assessment.",
   },
   {
     key: "present",

@@ -82,7 +82,7 @@ docs/API_MAPPING.md        view → endpoint mapping and the data Kiddies Check 
 
 | KPI | Meaning | Green | Amber | Red |
 |---|---|---|---|---|
-| Teachers: Assessment Records | Teachers who recorded ≥ 1 assessment in the period, out of all teachers (arm level: pupils assessed, out of pupils) | ≥ 75% | 50–74% | < 50% |
+| Teachers: Assessment Records | Staff who recorded ≥ 1 assessment in the period, out of teaching staff plus anyone else who recorded (arm level: pupils assessed, out of pupils) | ≥ 75% | 50–74% | < 50% |
 | Pupils: Present | Present or late, out of attendance records taken | ≥ 85% | 70–84% | < 70% |
 | Pupils: Attendance Marked | Records taken, out of active pupils × working days | ≥ 90% | 70–89% | < 70% |
 

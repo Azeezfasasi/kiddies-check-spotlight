@@ -73,6 +73,6 @@ These parts of the reference design have no data behind them today. Spotlight le
 |---|---|---|
 | Present | (present + late) ÷ records marked | Only pupils with a record count |
 | Attendance Marked | records marked ÷ (active pupils × working days elapsed) | Capped at 100%. Future days never count |
-| Assessment Records | teachers with ≥ 1 assessment dated in the period ÷ active teachers | Arm level and arm rows: pupils with ≥ 1 assessment ÷ pupils, because an arm has no teacher roster |
+| Assessment Records | staff with ≥ 1 assessment dated in the period ÷ (teaching staff ∪ everyone who recorded) | Counting every recorder means an assessment by a head teacher or learning specialist always shows at school and network level, matching the arm view. Arm level and arm rows: pupils with ≥ 1 assessment ÷ pupils, because an arm has no teacher roster |
 
-"Teachers" means active `SchoolMember` records with role `teacher`, plus legacy `User` records with role `teacher` and a `schoolId`, the same rule `/api/school/stats` uses. Working days are Monday to Friday minus academic-calendar holidays, counted only up to today.
+"Teaching staff" means active `SchoolMember` records with role `teacher`, legacy `User` records with role `teacher` and a `schoolId`, and the class teachers of active arms. The same set drives the Teachers count and Active PTR. Working days are Monday to Friday minus academic-calendar holidays, counted only up to today.
