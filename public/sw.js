@@ -1,12 +1,12 @@
 /* Spotlight service worker: offline app shell and the most recently viewed data. */
 
-const VERSION = "v1";
+const VERSION = "v2";
 const SHELL_CACHE = `spotlight-shell-${VERSION}`;
 const STATIC_CACHE = `spotlight-static-${VERSION}`;
 const API_CACHE = `spotlight-api-${VERSION}`;
 const API_CACHE_LIMIT = 60;
 
-const SHELL_URLS = ["/", "/login", "/network", "/offline", "/manifest.webmanifest", "/icons/192", "/icons/512"];
+const SHELL_URLS = ["/", "/login", "/network", "/offline", "/manifest.webmanifest", "/icons/192", "/icons/512", "/kiddieschecklogo.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -73,7 +73,7 @@ self.addEventListener("fetch", (event) => {
   if (url.pathname.startsWith("/api/")) return;
 
   // Build output is content-hashed, so it never changes once cached
-  if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/")) {
+  if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/") || url.pathname.startsWith("/_next/image") || url.pathname === "/kiddieschecklogo.png") {
     event.respondWith(cacheFirst(request));
     return;
   }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { Breadcrumb, Period, PeriodType, SearchResult } from "@/lib/api/types";
 import { SearchBox } from "./SearchBox";
@@ -32,6 +33,20 @@ export function TopBar(props: Props) {
       <button onClick={props.onOpenKpis} aria-label="Open KPIs" className="rounded p-2 hover:bg-surface lg:hidden">
         <MenuIcon size={24} />
       </button>
+
+      <Link href="/" aria-label="Kiddies Check Spotlight home" className="shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-brand">
+        <Image src="/kiddieschecklogo.png" alt="Kiddies Check" width={614} height={245} priority className="h-9 w-auto sm:h-11" />
+      </Link>
+
+      {/* Below lg the info and sign-out buttons share the logo's row */}
+      <div className="ml-auto flex items-center lg:hidden">
+        <button onClick={props.onOpenInfo} aria-label="Open info" className="rounded p-2 hover:bg-surface">
+          <InfoIcon size={22} />
+        </button>
+        <button onClick={props.onLogout} aria-label="Sign out" title="Sign out" className="rounded p-2 text-muted hover:bg-surface hover:text-ink">
+          <LogoutIcon size={20} />
+        </button>
+      </div>
 
       <nav aria-label="Breadcrumb" className="min-w-0 flex-1 basis-60">
         <ol className="flex w-fit max-w-full items-center gap-1 overflow-x-auto rounded-full bg-surface px-4 py-2.5 text-sm shadow-sm">
@@ -92,10 +107,7 @@ export function TopBar(props: Props) {
           </button>
         </div>
 
-        <button onClick={props.onOpenInfo} aria-label="Open info" className="rounded p-2 hover:bg-surface lg:hidden">
-          <InfoIcon size={22} />
-        </button>
-        <button onClick={props.onLogout} aria-label="Sign out" title="Sign out" className="rounded p-2 text-muted hover:bg-surface hover:text-ink">
+        <button onClick={props.onLogout} aria-label="Sign out" title="Sign out" className="hidden rounded p-2 text-muted hover:bg-surface hover:text-ink lg:block">
           <LogoutIcon size={20} />
         </button>
       </div>
