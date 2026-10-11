@@ -1,5 +1,7 @@
 # Kiddies Check Spotlight
 
+## Live Demo: https://spotlight.kiddiescheck.org
+
 An analytics dashboard for Kiddies Check. Directors, school leaders and administrators see attendance and assessment KPIs across their schools, then drill down: **network → school → arm**.
 
 Spotlight has no backend or database of its own. Everything comes from the Kiddies Check API, proxied through `/api/kc/*`.
